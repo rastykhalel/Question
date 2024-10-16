@@ -6,6 +6,8 @@ let questionIndex = 0;
 const totalQuestions = 10;
 let currentQuestion = null;
 let correctAnswer = null;
+let usedIndices = []; // Array to store used indices
+
 
 // Use fetch() to load the JSON file in a browser environment
 fetch('./assets/new.json')
@@ -35,8 +37,20 @@ function generateQuestion() {
     return;
   }
   
-  const randomIndex = Math.floor(Math.random() * words.length);
+ 
+  let randomIndex;
+
+  // Generate a new random index that hasn't been used yet
+  do {
+    randomIndex = Math.floor(Math.random() * words.length);
+    
+  } while (usedIndices.includes(randomIndex)); // Keep looping if the index is already used
+
+  // Mark this index as used
+  usedIndices.push(randomIndex);
+
   currentQuestion = words[randomIndex];
+
 
   const wrongAnswer = transformWord(currentQuestion);
   correctAnswer = currentQuestion;
