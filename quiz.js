@@ -58,8 +58,8 @@ function generateQuestion() {
   const options = [correctAnswer, wrongAnswer].sort(() => Math.random() - 0.5);
 
   document.getElementById('options-container').innerHTML = `
-    <button class="btn btn-outline-dark" onclick="checkAnswer('${options[0]}')">${options[0]}</button>
-    <button class="btn btn-outline-dark" onclick="checkAnswer('${options[1]}')">${options[1]}</button>
+    <button class="bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onclick="checkAnswer('${options[0]}')">${options[0]}</button>
+    <button class="bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onclick="checkAnswer('${options[1]}')">${options[1]}</button>
   `;
 }
 
@@ -71,8 +71,6 @@ function checkAnswer(selectedAnswer) {
   }else{
     wrongwords.push(selectedAnswer);
   }
-  document.getElementById('score-container').innerText = `وەڵام ڕاست ${score}`;
-  document.getElementById('score-containerf').innerText = `وەڵام هەڵە ${questionIndex+1-score}`;
   document.getElementById('prsyarnum').innerText = ` پرسیاری ${questionIndex + 2}`;
   
   nextQuestion();
@@ -86,8 +84,9 @@ function nextQuestion() {
   } else {
     document.getElementById('question-container').innerHTML = 
     `خاڵی بەدەستهاتوو بریتیە لە <span class="bg-body-secondary rounded-3 p-2 mb-3" style="font-size: small;">${score}</span>`;
-    document.getElementById('options-container').innerHTML = '<button class="btn btn-outline-dark" onClick="window.location.reload();">دووبارەکردنەوە</button>';
+    document.getElementById('options-container').innerHTML = '<button class="bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick="window.location.reload();">دووبارەکردنەوە</button>';
     document.getElementById('prsyarnum').style.display = 'none';
+    document.getElementById('score').style.display = '';
     document.getElementById('score-container').innerText = `وەڵامە ڕاستەکان \n ${correctwords.join( '\n')}`;
   document.getElementById('score-containerf').innerText = `وەڵامە هەڵەکان \n ${wrongwords.join(  '\n')}`;
  
